@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.security.Timestamp;
 
 @Entity
-@Table(name = "thread")
+@Table(name = "threads")
 public class Thread {
 
     @Id
@@ -15,4 +15,22 @@ public class Thread {
     private Long boardId;
     private String threadTitle;
     private Timestamp threadDate;
+
+    public Thread() {}
+
+    public Long getThreadId() {
+        return threadId;
+    }
+
+    public Long getBoardId() {
+        return boardId;
+    }
+
+    public String getThreadTitle() {
+        return threadTitle;
+    }
+
+    public Timestamp getThreadDate() {
+        return threadDate;
+    }
 }

@@ -23,7 +23,7 @@ services:
     volumes:
       - hive-db-data:/var/lib/mysql
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-p password" ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-p admin" ]
       interval: 10s
       timeout: 5s
       retries: 5

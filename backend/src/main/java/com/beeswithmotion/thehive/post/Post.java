@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.security.Timestamp;
 
 @Entity
-@Table(name = "post")
+@Table(name = "posts")
 public class Post {
 
     @Id
@@ -16,4 +16,26 @@ public class Post {
     private String postContent;
     private String postAuthor;
     private Timestamp postDate;
+
+    public Post() {}
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public Long getThreadId() {
+        return threadId;
+    }
+
+    public String getPostContent() {
+        return postContent;
+    }
+
+    public String getPostAuthor() {
+        return postAuthor;
+    }
+
+    public Timestamp getPostDate() {
+        return postDate;
+    }
 }

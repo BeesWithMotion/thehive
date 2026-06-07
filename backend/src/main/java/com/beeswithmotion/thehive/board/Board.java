@@ -3,7 +3,7 @@ package com.beeswithmotion.thehive.board;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "board")
+@Table(name = "boards")
 public class Board {
 
     @Id
@@ -12,4 +12,18 @@ public class Board {
 
     private String boardName;
     private String boardDescription;
+
+    public Board() {}
+
+    public Long getBoardId() {
+        return boardId;
+    }
+
+    public String getBoardName() {
+        return boardName;
+    }
+
+    public String getBoardDescription() {
+        return boardDescription;
+    }
 }
