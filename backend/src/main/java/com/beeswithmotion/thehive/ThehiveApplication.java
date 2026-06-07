@@ -8,6 +8,7 @@ public class ThehiveApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ThehiveApplication.class, args);
+        System.out.println("Welcome to the Hive.");
     }
 
 }

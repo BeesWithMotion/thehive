@@ -6,13 +6,16 @@ services:
     container_name: thehive
     ports:
       - "8080:8080"
+    depends_on:
+      hive-db:
+        condition: service_healthy
 
   hive-db:
     image: mysql:8.4
-    container_name: db
+    container_name: hive-db
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: hive_db
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: hive-db
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
