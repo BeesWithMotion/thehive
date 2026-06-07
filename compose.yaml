@@ -1,0 +1,29 @@
+services:
+  thehive:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: thehive
+    ports:
+      - "8080:8080"
+
+  hive-db:
+    image: mysql:8.4
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: hive_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - hive-db-data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-p password" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  hive-db-data:
