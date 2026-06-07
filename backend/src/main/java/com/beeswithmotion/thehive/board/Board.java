@@ -11,6 +11,7 @@ public class Board {
     private Long boardId;
 
     private String boardName;
+    private String boardAbbreviation;
     private String boardDescription;
 
     public Board() {}

@@ -1,0 +1,4 @@
+Remember to add these changes at some point
+- Use Optional types for DB queries
+- Find a better way to create IDs for Threads (also maybe change the name Thread)
+- Is everything just going through BoardController? If so, we should instead have a controller in the parent directory

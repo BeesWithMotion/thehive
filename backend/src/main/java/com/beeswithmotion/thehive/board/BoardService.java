@@ -17,4 +17,9 @@ public class BoardService {
         List<Board> boards = boardRepository.findAll();
         return ResponseEntity.ok(boards);
     }
+
+    public ResponseEntity<Board> getBoardByAbbreviation(String boardAbbreviation) {
+        Board board = boardRepository.findByBoardAbbreviation(boardAbbreviation);
+        return ResponseEntity.ok(board);
+    }
 }

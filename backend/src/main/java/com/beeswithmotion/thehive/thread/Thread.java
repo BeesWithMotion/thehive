@@ -14,6 +14,8 @@ public class Thread {
 
     private Long boardId;
     private String threadTitle;
+    private String threadDescription;
+    private String threadAuthor;
     private Timestamp threadDate;
 
     public Thread() {}
@@ -28,6 +30,14 @@ public class Thread {
 
     public String getThreadTitle() {
         return threadTitle;
+    }
+
+    public String getThreadDescription() {
+        return threadDescription;
+    }
+
+    public String getThreadAuthor() {
+        return threadAuthor;
     }
 
     public Timestamp getThreadDate() {

@@ -6,4 +6,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     Board findByBoardId(Long boardId);
 
     Board findByBoardName(String boardName);
+
+    Board findByBoardAbbreviation(String boardAbbreviation);
 }
