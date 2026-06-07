@@ -8,7 +8,7 @@ import java.util.List;
 public interface ThreadRepository extends JpaRepository<Thread, Long> {
     Thread findByThreadId(Long threadId);
 
-    List<Thread> findByBoardId(Long boardId);
+    List<Thread> findByBoardAbbreviation(String boardAbbreviation);
 
-    Thread findByBoardIdAndThreadId(Long boardId, Long threadId);
+    Thread findByBoardAbbreviationAndThreadId(String boardAbbreviation, Long threadId);
 }

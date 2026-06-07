@@ -7,15 +7,15 @@ CREATE TABLE boards (
 
 CREATE TABLE threads (
     thread_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    board_id BIGINT NOT NULL,
+    board_abbreviation VARCHAR(255) NOT NULL,
     thread_title VARCHAR(255) NOT NULL,
     thread_author VARCHAR(255) NOT NULL,
     thread_description TEXT NOT NULL,
     thread_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT fk_threads_board
-                     FOREIGN KEY (board_id)
-                     REFERENCES boards(board_id)
+                     FOREIGN KEY (board_abbreviation)
+                     REFERENCES boards(board_abbreviation)
                      ON DELETE CASCADE
 );
 

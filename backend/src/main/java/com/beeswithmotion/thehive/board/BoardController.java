@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/boards")
+@RequestMapping("/")
 public class BoardController {
     private final BoardService boardService;
     private final ThreadService threadService;
@@ -21,7 +21,7 @@ public class BoardController {
         this.threadService = threadService;
     }
 
-    @GetMapping()
+    @GetMapping("/boards")
     public ResponseEntity<List<Board>> getBoards() {return boardService.getBoards();}
 
     @GetMapping("/{boardAbbreviation}")
@@ -29,13 +29,13 @@ public class BoardController {
         return boardService.getBoardByAbbreviation(boardAbbreviation);
     }
 
-    @GetMapping("/{boardId}/threads")
-    public ResponseEntity<List<Thread>> getThreads(@PathVariable Long boardId) {
-        return threadService.getThreadsByBoardId(boardId);
+    @GetMapping("/{boardAbbreviation}/threads")
+    public ResponseEntity<List<Thread>> getThreads(@PathVariable String boardAbbreviation) {
+        return threadService.getThreadsByBoardAbbreviation(boardAbbreviation);
     }
 
-    @GetMapping("/{boardId}/threads/{threadId}")
-    public ResponseEntity<Thread> getThread(@PathVariable Long boardId, @PathVariable Long threadId) {
-        return threadService.getThreadByBoardIdAndThreadId(boardId, threadId);
+    @GetMapping("/{boardAbbreviation}/{threadId}")
+    public ResponseEntity<Thread> getThread(@PathVariable String boardAbbreviation, @PathVariable Long threadId) {
+        return threadService.getThreadByBoardAbbreviationAndThreadId(boardAbbreviation, threadId);
     }
 }

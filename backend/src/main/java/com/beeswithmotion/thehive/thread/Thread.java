@@ -2,7 +2,7 @@ package com.beeswithmotion.thehive.thread;
 
 import jakarta.persistence.*;
 
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "threads")
@@ -12,11 +12,11 @@ public class Thread {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long threadId;
 
-    private Long boardId;
+    private String boardAbbreviation;
     private String threadTitle;
     private String threadDescription;
     private String threadAuthor;
-    private Timestamp threadDate;
+    private LocalDateTime threadDate;
 
     public Thread() {}
 
@@ -24,8 +24,8 @@ public class Thread {
         return threadId;
     }
 
-    public Long getBoardId() {
-        return boardId;
+    public String getBoardAbbreviation() {
+        return boardAbbreviation;
     }
 
     public String getThreadTitle() {
@@ -40,7 +40,7 @@ public class Thread {
         return threadAuthor;
     }
 
-    public Timestamp getThreadDate() {
+    public LocalDateTime getThreadDate() {
         return threadDate;
     }
 }

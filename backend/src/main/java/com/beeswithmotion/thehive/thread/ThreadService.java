@@ -13,13 +13,13 @@ public class ThreadService {
         this.threadRepository = threadRepository;
     }
 
-    public ResponseEntity<List<Thread>> getThreadsByBoardId(Long boardId) {
-        List<Thread> threads = threadRepository.findByBoardId(boardId);
+    public ResponseEntity<List<Thread>> getThreadsByBoardAbbreviation(String boardAbbreviation) {
+        List<Thread> threads = threadRepository.findByBoardAbbreviation(boardAbbreviation);
         return ResponseEntity.ok(threads);
     }
 
-    public ResponseEntity<Thread> getThreadByBoardIdAndThreadId(Long boardId, Long threadId) {
-        Thread thread = threadRepository.findByBoardIdAndThreadId(boardId, threadId);
+    public ResponseEntity<Thread> getThreadByBoardAbbreviationAndThreadId(String boardAbbreviation, Long threadId) {
+        Thread thread = threadRepository.findByBoardAbbreviationAndThreadId(boardAbbreviation, threadId);
         return ResponseEntity.ok(thread);
     }
 }
