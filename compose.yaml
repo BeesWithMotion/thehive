@@ -2,7 +2,7 @@ services:
   thehive:
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./backend/Dockerfile
     container_name: thehive
     ports:
       - "8080:8080"
