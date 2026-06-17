@@ -2,7 +2,7 @@ package com.beeswithmotion.thehive.post;
 
 import jakarta.persistence.*;
 
-import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "posts")
@@ -15,7 +15,7 @@ public class Post {
     private Long threadId;
     private String postContent;
     private String postAuthor;
-    private Timestamp postDate;
+    private LocalDateTime postDate;
 
     public Post() {}
 
@@ -35,7 +35,7 @@ public class Post {
         return postAuthor;
     }
 
-    public Timestamp getPostDate() {
+    public LocalDateTime getPostDate() {
         return postDate;
     }
 }
