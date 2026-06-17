@@ -59,7 +59,6 @@ public class ImageService {
         }
     }
 
-    // Change this method
     public Optional<Image> getImageByStoredFileName(String storedFileName) {
         return imageRepository.findByStoredFileName(storedFileName);
     }

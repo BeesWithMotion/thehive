@@ -1,3 +1,6 @@
 Remember to add these changes at some point
 - Use Optional types for DB queries
-- Find a better way to create IDs for Threads (also maybe change the name Thread)
+- Maybe change the name thread
+- Frontend!!!
+- Message queueing?
+- User authentication & privileges
