@@ -54,14 +54,10 @@ public class PostService {
         if(author == null || author.isBlank()) {
             author = "Drone";
         }
-        String content = request.postContent();
-        if(content == null || content.isBlank()) {
-            content = "";
-        }
 
         Post post = new Post();
         post.setThreadId(threadId);
-        post.setPostContent(content);
+        post.setPostContent(request.postContent());
         post.setPostAuthor(author);
         post.setPostDate(java.time.LocalDateTime.now());
 
