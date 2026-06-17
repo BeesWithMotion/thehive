@@ -1,10 +1,10 @@
 package com.beeswithmotion.thehive.thread;
 
+import com.beeswithmotion.thehive.thread.dto.CreateThreadRequest;
+import com.beeswithmotion.thehive.thread.dto.ThreadResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +25,10 @@ public class ThreadController {
     @GetMapping("/{boardAbbreviation}/{threadId}")
     public ResponseEntity<Thread> getThread(@PathVariable String boardAbbreviation, @PathVariable Long threadId) {
         return threadService.getThreadByBoardAbbreviationAndThreadId(boardAbbreviation, threadId);
+    }
+
+    @PostMapping("/{boardAbbreviation}/threads")
+    public ThreadResponse createThread(@PathVariable String boardAbbreviation, @Valid @RequestBody CreateThreadRequest request) {
+        return threadService.createThread(boardAbbreviation, request);
     }
 }

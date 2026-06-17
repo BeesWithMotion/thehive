@@ -4,8 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public record CreateThreadRequest(
-    @NotBlank(message = "Board is required")
-    String boardAbbreviation,
+        // Board abbreviation given in HTTP POST request in ThreadController
+    //@NotBlank(message = "Board is required")
+    //String boardAbbreviation,
 
     @NotBlank(message = "Thread title is required")
     @Size(max = 255, message = "Thread title must be less than 255 characters")

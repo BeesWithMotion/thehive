@@ -43,4 +43,24 @@ public class Thread {
     public LocalDateTime getThreadDate() {
         return threadDate;
     }
+
+    public void setBoardAbbreviation(String boardAbbreviation) {
+        this.boardAbbreviation = boardAbbreviation;
+    }
+
+    public void setThreadTitle(String threadTitle) {
+        this.threadTitle = threadTitle;
+    }
+
+    public void setThreadDescription(String threadDescription) {
+        this.threadDescription = threadDescription;
+    }
+
+    public void setThreadAuthor(String threadAuthor) {
+        this.threadAuthor = threadAuthor;
+    }
+
+    public void setThreadDate(LocalDateTime threadDate) {
+        this.threadDate = threadDate;
+    }
 }
