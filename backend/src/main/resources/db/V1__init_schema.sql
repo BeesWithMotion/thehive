@@ -31,3 +31,18 @@ CREATE TABLE posts (
                      REFERENCES threads(thread_id)
                    ON DELETE CASCADE
 );
+
+CREATE TABLE images (
+    image_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    post_id BIGINT NOT NULL,
+    original_file_name VARCHAR(255) NOT NULL,
+    stored_file_name VARCHAR(255) NOT NULL UNIQUE,
+    content_type VARCHAR(100) NOT NULL,
+    file_size BIGINT NOT NULL,
+    upload_date_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_images_post
+                    FOREIGN KEY (post_id)
+                    REFERENCES posts(post_id)
+                    ON DELETE CASCADE
+);

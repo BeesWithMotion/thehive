@@ -6,6 +6,8 @@ services:
     container_name: thehive
     ports:
       - "8080:8080"
+    volumes:
+      - ./backend/uploads/images:/app/uploads/images
     depends_on:
       hive-db:
         condition: service_healthy
@@ -23,7 +25,7 @@ services:
     volumes:
       - hive-db-data:/var/lib/mysql
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-p admin" ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-padmin" ]
       interval: 10s
       timeout: 5s
       retries: 5
