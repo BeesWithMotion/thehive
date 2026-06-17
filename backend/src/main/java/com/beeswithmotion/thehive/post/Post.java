@@ -38,4 +38,20 @@ public class Post {
     public LocalDateTime getPostDate() {
         return postDate;
     }
+
+    public void setThreadId(Long threadId) {
+        this.threadId = threadId;
+    }
+
+    public void setPostContent(String postContent) {
+        this.postContent = postContent;
+    }
+
+    public void setPostAuthor(String postAuthor) {
+        this.postAuthor = postAuthor;
+    }
+
+    public void setPostDate(LocalDateTime postDate) {
+        this.postDate = postDate;
+    }
 }
