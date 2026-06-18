@@ -10,6 +10,10 @@ export default defineConfig({
         target: "http://thehive:8080",
         changeOrigin: true,
       },
+      "/images": {
+        target: "http://thehive:8080",
+        changeOrigin: true,
+      }
     },
   },
 });

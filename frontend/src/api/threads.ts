@@ -1,4 +1,4 @@
-import { apiPost } from "./client";
+import {apiGet, apiPost} from "./client";
 import type { CreateThreadRequest, Thread } from "../types/thread";
 
 export function createThread(
@@ -9,4 +9,8 @@ export function createThread(
         `/api/boards/${boardAbbreviation}/threads`,
         request,
     );
+}
+
+export function getThread(boardAbbreviation: string, threadId: number) {
+    return apiGet<Thread>(`/api/boards/${boardAbbreviation}/threads/${threadId}`);
 }
