@@ -8,7 +8,6 @@ export async function apiGet<T>(path: string): Promise<T> {
     return response.json() as Promise<T>;
 }
 
-
 export async function apiPost<TResponse, TBody>(path: string, body: TBody): Promise<TResponse> {
     const response = await fetch(path, {
         method: 'POST',

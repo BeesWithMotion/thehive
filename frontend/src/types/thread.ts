@@ -6,3 +6,9 @@ export type Thread = {
     threadAuthor: string,
     threadDate: string
 };
+
+export type CreateThreadRequest = {
+    threadTitle: string,
+    threadDescription: string,
+    threadAuthor: string
+};

@@ -10,8 +10,8 @@ function App() {
         <Routes>
           <Route path="/" element={<BoardListPage />} />
           <Route path="/boards/:boardAbbreviation" element={<BoardPage />} />
-          <Route path="/threads/:threadId" element={<ThreadPage />} />
           <Route path="/boards/:boardAbbreviation/new" element={<CreateThreadPage />} />
+          <Route path="/boards/:boardAbbreviation/threads/:threadId" element={<ThreadPage />} />
         </Routes>
       </BrowserRouter>
   );

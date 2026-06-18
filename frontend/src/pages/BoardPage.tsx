@@ -57,7 +57,7 @@ export function BoardPage() {
             </header>
 
             <section>
-                <h2>Threads</h2>
+                <h2>Active Threads</h2>
 
                 <Link to={`/boards/${board.boardAbbreviation}/new`}>
                     Create a thread
