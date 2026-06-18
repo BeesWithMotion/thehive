@@ -24,6 +24,10 @@ public class Board {
         return boardName;
     }
 
+    public String getBoardAbbreviation() {
+        return boardAbbreviation;
+    }
+
     public String getBoardDescription() {
         return boardDescription;
     }

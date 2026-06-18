@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/boards/{boardAbbreviation}/threads/{threadId}/posts")
 public class PostController {
     private final PostService postService;
 
@@ -19,17 +19,17 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping("/{boardAbbreviation}/{threadId}/posts")
+    @GetMapping
     public ResponseEntity<List<PostResponse>> getPosts(@PathVariable String boardAbbreviation, @PathVariable Long threadId) {
         return postService.getPostsByBoardAbbreviationAndThreadId(boardAbbreviation, threadId);
     }
 
-    @PostMapping(value = "/{boardAbbreviation}/{threadId}/posts", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public PostResponse createPost(@PathVariable String boardAbbreviation, @PathVariable Long threadId, @Valid @RequestBody CreatePostRequest request) {
         return postService.createPost(boardAbbreviation, threadId, request, null);
     }
 
-    @PostMapping(value = "/{boardAbbreviation}/{threadId}/posts", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public PostResponse createPostMultipart(
             @PathVariable String boardAbbreviation,
             @PathVariable Long threadId,

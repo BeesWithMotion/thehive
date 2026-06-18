@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -67,7 +68,7 @@ public class PostService {
         post.setThreadId(threadId);
         post.setPostContent(request.postContent());
         post.setPostAuthor(author);
-        post.setPostDate(java.time.LocalDateTime.now());
+        post.setPostDate(LocalDateTime.now());
 
         Post savedPost = postRepository.save(post);
 

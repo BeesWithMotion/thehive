@@ -49,7 +49,7 @@ public class ImageService {
             image.setStoredFileName(storedFileName);
             image.setContentType(file.getContentType());
             image.setFileSize(file.getSize());
-            image.setUploadDateTime(java.time.LocalDateTime.now());
+            image.setUploadDateTime(LocalDateTime.now());
 
             Image savedImage = imageRepository.save(image);
 
