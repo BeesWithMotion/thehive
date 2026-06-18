@@ -20,6 +20,11 @@ public class BoardService {
 
     public ResponseEntity<Board> getBoardByAbbreviation(String boardAbbreviation) {
         Board board = boardRepository.findByBoardAbbreviation(boardAbbreviation);
+
+        if(board == null) {
+            return ResponseEntity.notFound().build();
+        }
+
         return ResponseEntity.ok(board);
     }
 }

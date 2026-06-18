@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/boards/{boardAbbreviation}/threads")
 public class ThreadController {
     private final ThreadService threadService;
 
@@ -17,17 +17,17 @@ public class ThreadController {
         this.threadService = threadService;
     }
 
-    @GetMapping("/{boardAbbreviation}/threads")
+    @GetMapping
     public ResponseEntity<List<Thread>> getThreads(@PathVariable String boardAbbreviation) {
         return threadService.getThreadsByBoardAbbreviation(boardAbbreviation);
     }
 
-    @GetMapping("/{boardAbbreviation}/{threadId}")
+    @GetMapping("/{threadId}")
     public ResponseEntity<Thread> getThread(@PathVariable String boardAbbreviation, @PathVariable Long threadId) {
         return threadService.getThreadByBoardAbbreviationAndThreadId(boardAbbreviation, threadId);
     }
 
-    @PostMapping("/{boardAbbreviation}/threads")
+    @PostMapping
     public ThreadResponse createThread(@PathVariable String boardAbbreviation, @Valid @RequestBody CreateThreadRequest request) {
         return threadService.createThread(boardAbbreviation, request);
     }
