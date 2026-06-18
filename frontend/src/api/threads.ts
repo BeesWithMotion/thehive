@@ -14,3 +14,7 @@ export function createThread(
 export function getThread(boardAbbreviation: string, threadId: number) {
     return apiGet<Thread>(`/api/boards/${boardAbbreviation}/threads/${threadId}`);
 }
+
+export function getThreads(boardAbbreviation: string) {
+    return apiGet<Thread[]>(`/api/boards/${boardAbbreviation}/threads`);
+}
