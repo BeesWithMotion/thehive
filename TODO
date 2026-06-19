@@ -1,6 +1,8 @@
 Remember to add these changes at some point
 - Use Optional types for DB queries
 - Maybe change the name thread
-- Frontend!!!
 - Message queueing?
 - User authentication & privileges
+
+- Make the Thread object contain an initial post, display image on board page
+- There may be timezone tomfoolery due to LocalDateTime being used for timestamps

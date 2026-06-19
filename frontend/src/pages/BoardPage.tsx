@@ -85,7 +85,7 @@ export function BoardPage() {
                                 </strong>
                                 {" . "}
                                 <time dateTime={thread.threadDate}>
-                                    {new Date(thread.threadDate).toLocaleDateString()}
+                                    {new Date(thread.threadDate).toLocaleString()}
                                 </time>
                                 {" . "}
                             </header>

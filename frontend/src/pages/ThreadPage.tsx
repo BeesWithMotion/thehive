@@ -76,7 +76,7 @@ export function ThreadPage() {
                     <h1>{thread.threadTitle}</h1>
                     <p>
                         Posted by {thread.threadAuthor} on {" "}
-                        {new Date(thread.threadDate).toLocaleDateString()}
+                        {new Date(thread.threadDate).toLocaleString()}
                     </p>
                 </header>
 
@@ -95,7 +95,7 @@ export function ThreadPage() {
                                 <strong>{post.postAuthor}</strong>
                                 {" . "}
                                 <time dateTime={post.postDate}>
-                                    {new Date(post.postDate).toLocaleDateString()}
+                                    {new Date(post.postDate).toLocaleString()}
                                 </time>
                                 {" . "}
                                 <span>No. {post.postId}</span>
