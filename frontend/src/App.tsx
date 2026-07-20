@@ -3,6 +3,8 @@ import { BoardListPage } from "./pages/BoardListPage.tsx";
 import { BoardPage } from "./pages/BoardPage.tsx";
 import { ThreadPage } from "./pages/ThreadPage.tsx";
 import { CreateThreadPage } from "./pages/CreateThreadPage.tsx";
+import {LoginPage} from "./pages/LoginPage.tsx";
+import {RegisterPage} from "./pages/RegisterPage.tsx";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
           <Route path="/boards/:boardAbbreviation" element={<BoardPage />} />
           <Route path="/boards/:boardAbbreviation/new" element={<CreateThreadPage />} />
           <Route path="/boards/:boardAbbreviation/threads/:threadId" element={<ThreadPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </BrowserRouter>
   );

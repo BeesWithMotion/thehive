@@ -2,7 +2,7 @@ package com.beeswithmotion.thehive.user;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;import java.time.LocalDateTime;
 
 // TODO create User DTOs
 @Entity
@@ -11,13 +11,18 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id") // Don't like explicitly naming it
     private Long id;
 
     private String username;
     private String email;
+
+    @Column(name = "password_hash")
     private String passwordHash;
-    private String role;
-    private LocalDateTime createdAt;
+    private String role = "user";
+
+    @Column(name = "created_at")
+    private Instant createdAt = Instant.now();
 
     public Long getId() {
         return id;
@@ -55,7 +60,7 @@ public class User {
         this.role = role;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 }
