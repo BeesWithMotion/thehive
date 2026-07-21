@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getPosts, createPost } from "../api/posts";
+import { getPosts, createPostWithImage } from "../api/posts";
 import { getThread } from "../api/threads";
 import type { Post } from "../types/post";
 import type { Thread } from "../types/thread";
@@ -18,10 +18,13 @@ export function ThreadPage() {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const [postContent, setPostContent] = useState("");
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
+
+        const form = event.currentTarget;
 
         if(!boardAbbreviation) {
             setErrorMessage("Invalid board abbreviation");
@@ -37,12 +40,15 @@ export function ThreadPage() {
         setErrorMessage(null);
 
         try {
-            const createdPost = await createPost(boardAbbreviation, Number(threadId), {
+            const createdPost = await createPostWithImage(boardAbbreviation, Number(threadId), {
                 postContent
-            });
+            }, selectedImage);
 
             setPosts((currentPosts) => [...currentPosts, createdPost]);
             setPostContent("");
+            setSelectedImage(null);
+
+            form.reset();
         } catch (error) {
             const message = error instanceof Error ? error.message : "Error during post creation";
             setErrorMessage(message);
@@ -167,6 +173,24 @@ export function ThreadPage() {
                                 required
                             />
                         </div>
+
+                        <div>
+                            <label htmlFor="postImage">Image</label>
+                            <input
+                                id="postImage"
+                                name="postImage"
+                                type="file"
+                                accept="image/*"
+                                onChange={(event) => {
+                                    const file = event.target.files?.[0] ?? null;
+                                    setSelectedImage(file);
+                                }}
+                            />
+                        </div>
+
+                        {selectedImage && (
+                            <p>Selected image: {selectedImage.name}</p>
+                        )}
 
                         <button type="submit" disabled={isSubmitting}>
                             {isSubmitting ? "Buzzing..." : "Add Buzz"}
