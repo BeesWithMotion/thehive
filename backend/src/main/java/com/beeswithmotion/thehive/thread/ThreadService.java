@@ -26,12 +26,12 @@ public class ThreadService {
         return ResponseEntity.ok(thread);
     }
 
-    public ThreadResponse createThread(String boardAbbreviation, CreateThreadRequest request) {
+    public ThreadResponse createThread(String boardAbbreviation, CreateThreadRequest request, String author) {
         Thread thread = new Thread();
 
         thread.setBoardAbbreviation(boardAbbreviation);
 
-        String author = request.threadAuthor();
+        //String author = request.threadAuthor();
         if(author == null || author.isBlank()) {
             author = "Drone";
         }

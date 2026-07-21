@@ -52,14 +52,14 @@ public class PostService {
         return ResponseEntity.ok(posts);
     }
 
-    public PostResponse createPost(String boardAbbreviation, Long threadId, CreatePostRequest request, MultipartFile imageFile) {
+    public PostResponse createPost(String boardAbbreviation, Long threadId, CreatePostRequest request, MultipartFile imageFile, String author) {
         Thread thread = threadRepository.findByBoardAbbreviationAndThreadId(boardAbbreviation, threadId);
 
         if(thread == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Thread not found");
         }
 
-        String author = request.postAuthor();
+        //String author = request.postAuthor();
         if(author == null || author.isBlank()) {
             author = "Drone";
         }

@@ -9,7 +9,6 @@ export function CreateThreadPage() {
 
     const [threadTitle, setThreadTitle] = useState("");
     const [threadDescription, setThreadDescription] = useState("");
-    const [threadAuthor, setThreadAuthor] = useState("");
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -29,7 +28,6 @@ export function CreateThreadPage() {
             const createdThread = await createThread(boardAbbreviation, {
                 threadTitle,
                 threadDescription,
-                threadAuthor
             });
 
             navigate(`/boards/${createdThread.boardAbbreviation}/threads/${createdThread.threadId}`);
@@ -74,19 +72,6 @@ export function CreateThreadPage() {
                         name="threadDescription"
                         value={threadDescription}
                         onChange={(event) => setThreadDescription(event.target.value)}
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor="threadAuthor">Author</label>
-                    <input
-                        id="threadAuthor"
-                        name="threadAuthor"
-                        type="text"
-                        value={threadAuthor}
-                        onChange={(event) => setThreadAuthor(event.target.value)}
-                        maxLength={80}
-                        placeholder="Drone"
                     />
                 </div>
 

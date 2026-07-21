@@ -4,7 +4,7 @@ import com.beeswithmotion.thehive.thread.dto.CreateThreadRequest;
 import com.beeswithmotion.thehive.thread.dto.ThreadResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,7 +28,9 @@ public class ThreadController {
     }
 
     @PostMapping
-    public ThreadResponse createThread(@PathVariable String boardAbbreviation, @Valid @RequestBody CreateThreadRequest request) {
-        return threadService.createThread(boardAbbreviation, request);
+    public ThreadResponse createThread(@PathVariable String boardAbbreviation, @Valid @RequestBody CreateThreadRequest request, Authentication authentication) {
+        String username = authentication.getName();
+
+        return threadService.createThread(boardAbbreviation, request, username);
     }
 }

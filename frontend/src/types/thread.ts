@@ -10,5 +10,5 @@ export type Thread = {
 export type CreateThreadRequest = {
     threadTitle: string,
     threadDescription: string,
-    threadAuthor: string
+    //threadAuthor: string
 };

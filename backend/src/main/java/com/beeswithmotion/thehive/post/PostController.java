@@ -5,7 +5,7 @@ import com.beeswithmotion.thehive.post.dto.PostResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -25,8 +25,10 @@ public class PostController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public PostResponse createPost(@PathVariable String boardAbbreviation, @PathVariable Long threadId, @Valid @RequestBody CreatePostRequest request) {
-        return postService.createPost(boardAbbreviation, threadId, request, null);
+    public PostResponse createPost(@PathVariable String boardAbbreviation, @PathVariable Long threadId, @Valid @RequestBody CreatePostRequest request, Authentication authentication) {
+        String username = authentication.getName();
+
+        return postService.createPost(boardAbbreviation, threadId, request, null, username);
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -34,8 +36,11 @@ public class PostController {
             @PathVariable String boardAbbreviation,
             @PathVariable Long threadId,
             @Valid @RequestPart("post") CreatePostRequest request,
-            @RequestPart(value = "image", required = false) MultipartFile image
+            @RequestPart(value = "image", required = false) MultipartFile image,
+            Authentication authentication
     ) {
-        return postService.createPost(boardAbbreviation, threadId, request, image);
+        String username = authentication.getName();
+
+        return postService.createPost(boardAbbreviation, threadId, request, image, username);
     }
 }
