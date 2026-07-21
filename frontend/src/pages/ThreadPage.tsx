@@ -155,22 +155,28 @@ export function ThreadPage() {
             <section>
                 <h2>Add Buzz</h2>
 
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor="postContent">Post content</label>
-                        <textarea
-                            id="postContent"
-                            name="postContent"
-                            value={postContent}
-                            onChange={(event) => setPostContent(event.target.value)}
-                            required
-                        />
-                    </div>
+                {localStorage.getItem("authToken") ? (
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label htmlFor="postContent">Post content</label>
+                            <textarea
+                                id="postContent"
+                                name="postContent"
+                                value={postContent}
+                                onChange={(event) => setPostContent(event.target.value)}
+                                required
+                            />
+                        </div>
 
-                    <button type="submit" disabled={isSubmitting}>
-                        {isSubmitting ? "Buzzing..." : "Add Buzz"}
-                    </button>
-                </form>
+                        <button type="submit" disabled={isSubmitting}>
+                            {isSubmitting ? "Buzzing..." : "Add Buzz"}
+                        </button>
+                    </form>
+                ) : (
+                    <p>
+                        Please <Link to ="/login">log in</Link> to reply.
+                    </p>
+                )}
             </section>
         </main>
     )
