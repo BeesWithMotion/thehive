@@ -14,8 +14,24 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
+function getAuthHeaders(): HeadersInit {
+    const token = localStorage.getItem("authToken");
+
+    if (!token) {
+        return {};
+    }
+
+    return {
+        Authorization: `Bearer ${token}`,
+    };
+}
+
 export async function apiGet<T>(path: string): Promise<T> {
-    const response = await fetch(path);
+    const response = await fetch(path, {
+        headers: {
+            ...getAuthHeaders(),
+        },
+    });
 
     if (!response.ok) {
         throw new Error(`Request failed: ${response.status}`);
@@ -29,6 +45,7 @@ export async function apiPost<TResponse, TBody>(path: string, body: TBody): Prom
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            ...getAuthHeaders(),
         },
         body: JSON.stringify(body),
     });
