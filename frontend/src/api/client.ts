@@ -56,3 +56,22 @@ export async function apiPost<TResponse, TBody>(path: string, body: TBody): Prom
 
     return response.json() as Promise<TResponse>;
 }
+
+export async function apiPostFormData<TResponse>(
+    path: string,
+    formData: FormData
+): Promise<TResponse> {
+    const response = await fetch(path, {
+        method: "POST",
+        headers: {
+            ...getAuthHeaders(),
+        },
+        body: formData,
+    });
+
+    if (!response.ok) {
+        throw new Error(`Request failed: ${response.status}`);
+    }
+
+    return response.json() as Promise<TResponse>;
+}

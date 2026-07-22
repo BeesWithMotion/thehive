@@ -15,3 +15,7 @@ export type ImageResponse = {
     uploadDateTime: string,
     imageUrl: string
 }
+
+export type CreatePostRequest = {
+    postContent: string
+}

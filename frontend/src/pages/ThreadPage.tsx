@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import type { FormEvent } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getPosts } from "../api/posts";
+import { getPosts, createPostWithImage } from "../api/posts";
 import { getThread } from "../api/threads";
 import type { Post } from "../types/post";
 import type { Thread } from "../types/thread";
@@ -15,6 +16,46 @@ export function ThreadPage() {
     const [posts, setPosts] = useState<Post[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+    const [postContent, setPostContent] = useState("");
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        const form = event.currentTarget;
+
+        if(!boardAbbreviation) {
+            setErrorMessage("Invalid board abbreviation");
+            return;
+        }
+
+        if(!postContent.trim()) {
+            setErrorMessage("Post cannot be empty");
+            return;
+        }
+
+        setIsSubmitting(true);
+        setErrorMessage(null);
+
+        try {
+            const createdPost = await createPostWithImage(boardAbbreviation, Number(threadId), {
+                postContent
+            }, selectedImage);
+
+            setPosts((currentPosts) => [...currentPosts, createdPost]);
+            setPostContent("");
+            setSelectedImage(null);
+
+            form.reset();
+        } catch (error) {
+            const message = error instanceof Error ? error.message : "Error during post creation";
+            setErrorMessage(message);
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
 
     useEffect(() => {
         if(!boardAbbreviation || !threadId) {
@@ -114,6 +155,51 @@ export function ThreadPage() {
                             <p>{post.postContent}</p>
                         </article>
                     ))
+                )}
+            </section>
+
+            <section>
+                <h2>Add Buzz</h2>
+
+                {localStorage.getItem("authToken") ? (
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <label htmlFor="postContent">Post content</label>
+                            <textarea
+                                id="postContent"
+                                name="postContent"
+                                value={postContent}
+                                onChange={(event) => setPostContent(event.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="postImage">Image</label>
+                            <input
+                                id="postImage"
+                                name="postImage"
+                                type="file"
+                                accept="image/*"
+                                onChange={(event) => {
+                                    const file = event.target.files?.[0] ?? null;
+                                    setSelectedImage(file);
+                                }}
+                            />
+                        </div>
+
+                        {selectedImage && (
+                            <p>Selected image: {selectedImage.name}</p>
+                        )}
+
+                        <button type="submit" disabled={isSubmitting}>
+                            {isSubmitting ? "Buzzing..." : "Add Buzz"}
+                        </button>
+                    </form>
+                ) : (
+                    <p>
+                        Please <Link to ="/login">log in</Link> to reply.
+                    </p>
                 )}
             </section>
         </main>

@@ -51,34 +51,40 @@ export function CreateThreadPage() {
 
             {errorMessage && <p>{errorMessage}</p>}
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="threadTitle">Title</label>
-                    <input
-                        id="threadTitle"
-                        name="threadTitle"
-                        type="text"
-                        value={threadTitle}
-                        onChange={(event) => setThreadTitle(event.target.value)}
-                        required
-                        maxLength={255}
-                    />
-                </div>
+            {localStorage.getItem("authToken") ? (
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="threadTitle">Title</label>
+                        <input
+                            id="threadTitle"
+                            name="threadTitle"
+                            type="text"
+                            value={threadTitle}
+                            onChange={(event) => setThreadTitle(event.target.value)}
+                            required
+                            maxLength={255}
+                        />
+                    </div>
 
-                <div>
-                    <label htmlFor="threadDescription">Description</label>
-                    <textarea
-                        id="threadDescription"
-                        name="threadDescription"
-                        value={threadDescription}
-                        onChange={(event) => setThreadDescription(event.target.value)}
-                    />
-                </div>
+                    <div>
+                        <label htmlFor="threadDescription">Description</label>
+                        <textarea
+                            id="threadDescription"
+                            name="threadDescription"
+                            value={threadDescription}
+                            onChange={(event) => setThreadDescription(event.target.value)}
+                        />
+                    </div>
 
-                <button type="submit" disabled={isSubmitting}>
-                    {isSubmitting ? "Creating..." : "Create thread"}
-                </button>
-            </form>
+                    <button type="submit" disabled={isSubmitting}>
+                        {isSubmitting ? "Creating..." : "Create thread"}
+                    </button>
+                </form>
+            ) : (
+                <p>
+                    Please <Link to ="/login">log in</Link> to create a thread.
+                </p>
+            )}
         </main>
     )
 }
