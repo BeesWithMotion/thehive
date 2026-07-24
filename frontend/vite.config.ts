@@ -15,5 +15,6 @@ export default defineConfig({
         changeOrigin: true,
       }
     },
+    allowedHosts: ['thehive.forum']
   },
 });
