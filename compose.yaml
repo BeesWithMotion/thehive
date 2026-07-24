@@ -18,7 +18,10 @@ services:
       dockerfile: Dockerfile
     container_name: thehive-frontend
     ports:
-      - "80:80"
+      - "80:5173"
+    volumes:
+      - ./frontend:/app
+      - frontend-node_modules:/app/node_modules
     depends_on:
       - thehive
 
@@ -42,3 +45,4 @@ services:
 
 volumes:
   hive-db-data:
+  frontend-node_modules:
