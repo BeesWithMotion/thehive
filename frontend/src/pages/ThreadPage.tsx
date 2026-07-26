@@ -3,6 +3,7 @@ import type { FormEvent } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getPosts, createPostWithImage } from "../api/posts";
 import { getThread } from "../api/threads";
+import { PostCard } from "../components/PostCard";
 import type { Post } from "../types/post";
 import type { Thread } from "../types/thread";
 
@@ -131,29 +132,10 @@ export function ThreadPage() {
                     <p>No replies yet.</p>
                 ) : (
                     posts.map((post) => (
-                        <article key={post.postId}>
-                            <header>
-                                <strong>{post.postAuthor}</strong>
-                                {" . "}
-                                <time dateTime={post.postDate}>
-                                    {new Date(post.postDate).toLocaleString()}
-                                </time>
-                                {" . "}
-                                <span>No. {post.postId}</span>
-                            </header>
-
-                            {post.image && (
-                                <div>
-                                    <img
-                                        src={post.image.imageUrl}
-                                        alt={post.image.originalFileName}
-                                        style={{ maxWidth: "320px", height: "auto" }}
-                                        />
-                                </div>
-                            )}
-
-                            <p>{post.postContent}</p>
-                        </article>
+                        <PostCard
+                            key={post.postId}
+                            post={post}
+                        />
                     ))
                 )}
             </section>

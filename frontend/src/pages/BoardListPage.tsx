@@ -27,6 +27,12 @@ export function BoardListPage() {
         <main>
             <h1>The Hive</h1>
 
+            {localStorage.getItem("username") ? (
+                <p>Welcome to the hive</p>
+            ) : (
+                <p><Link to="/register">Register</Link> * <Link to="/login">Login</Link></p>
+            )}
+
             <section>
                 {boards.map((board) => (
                     <article key={board.boardId}>
