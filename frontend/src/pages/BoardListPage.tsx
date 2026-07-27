@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getBoards } from "../api/boards";
+import { BoardCard } from "../components/BoardCard";
 import type { Board } from "../types/board";
 
 export function BoardListPage() {
@@ -27,15 +28,18 @@ export function BoardListPage() {
         <main>
             <h1>The Hive</h1>
 
+            {localStorage.getItem("username") ? (
+                <p>Welcome to the hive</p>
+            ) : (
+                <p><Link to="/register">Register</Link> * <Link to="/login">Login</Link></p>
+            )}
+
             <section>
                 {boards.map((board) => (
-                    <article key={board.boardId}>
-                        <h2>
-                            <Link to={`/boards/${board.boardAbbreviation}`}>/{board.boardAbbreviation}/</Link>
-                        </h2>
-                        <h3>{board.boardName}</h3>
-                        <p>{board.boardDescription}</p>
-                    </article>
+                    <BoardCard
+                        key={board.boardId}
+                        board={board}
+                    />
                 ))}
             </section>
         </main>
