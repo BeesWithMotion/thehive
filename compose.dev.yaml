@@ -1,0 +1,29 @@
+services:
+  thehive:
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    volumes:
+      - ./backend/uploads/images:/app/uploads/images
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: dev
+    command: npm run dev -- --host 0.0.0.0
+    ports: !override
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      VITE_API_BASE_URL: http://localhost:8080
+
+  hive-db:
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"

@@ -1,0 +1,16 @@
+services:
+  thehive:
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+    restart: unless-stopped
+
+  frontend:
+    restart: unless-stopped
+    ports:
+      - "80:80"
+
+  hive-db:
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    restart: unless-stopped

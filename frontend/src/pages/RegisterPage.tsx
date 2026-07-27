@@ -21,7 +21,7 @@ export function RegisterPage() {
         <main>
             <h1>Register a new account</h1>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "0.5rem"}}>
                 <label>
                     Email
                     <input value={email} onChange={(event) => setEmail(event.target.value)} />
@@ -37,7 +37,7 @@ export function RegisterPage() {
                     <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
                 </label>
 
-                <button type="submit">Register</button>
+                <button type="submit" style={{maxWidth: "0.5rem"}}>Register</button>
             </form>
         </main>
     )

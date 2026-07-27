@@ -1,5 +1,5 @@
 import type { Board } from "../types/board";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type BoardCardProps = {
     board: Board;
