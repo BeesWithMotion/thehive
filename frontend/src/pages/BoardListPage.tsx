@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { getBoards } from "../api/boards";
 import { BoardCard } from "../components/BoardCard";
 import type { Board } from "../types/board";
+import {SideCard} from "../components/SideCard.tsx";
 
 export function BoardListPage() {
     const [boards, setBoards] = useState<Board[]>([]);
@@ -28,11 +28,7 @@ export function BoardListPage() {
         <main>
             <h1>The Hive</h1>
 
-            {localStorage.getItem("username") ? (
-                <p>Welcome to the hive</p>
-            ) : (
-                <p><Link to="/register">Register</Link> * <Link to="/login">Login</Link></p>
-            )}
+            <SideCard/>
 
             <section>
                 {boards.map((board) => (
