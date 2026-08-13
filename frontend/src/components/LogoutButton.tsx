@@ -1,13 +1,12 @@
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import { logout } from "../api/auth";
 
 export function LogoutButton() {
-    const navigate = useNavigate();
     const isLoggedIn = Boolean(localStorage.getItem("authToken"));
 
     function handleLogout() {
         logout();
-        navigate("/");
+        window.location.reload();
     }
 
     return (

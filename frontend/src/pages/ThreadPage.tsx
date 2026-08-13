@@ -6,6 +6,7 @@ import { getThread } from "../api/threads";
 import { PostCard } from "../components/PostCard";
 import type { Post } from "../types/post";
 import type { Thread } from "../types/thread";
+import {SideCard} from "../components/SideCard.tsx";
 
 export function ThreadPage() {
     const { boardAbbreviation, threadId } = useParams<{
@@ -105,6 +106,9 @@ export function ThreadPage() {
 
     return (
         <main>
+
+            <SideCard/>
+
             <nav>
                 <Link to="/">Boards</Link>
                 {" / "}

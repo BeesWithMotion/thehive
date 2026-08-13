@@ -26,9 +26,9 @@ export function BoardListPage() {
 
     return (
         <main>
-            <h1>The Hive</h1>
-
             <SideCard/>
+
+            <h1>The Hive</h1>
 
             <section>
                 {boards.map((board) => (

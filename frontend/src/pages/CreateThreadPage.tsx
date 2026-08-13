@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { createThread } from "../api/threads";
+import {SideCard} from "../components/SideCard.tsx";
 
 export function CreateThreadPage() {
     const { boardAbbreviation } = useParams<{ boardAbbreviation: string }>();
@@ -41,6 +42,9 @@ export function CreateThreadPage() {
 
     return (
         <main>
+
+            <SideCard/>
+
             <nav>
                 <Link to={boardAbbreviation ? `/boards/${boardAbbreviation}` : "/"}>
                     Back to board

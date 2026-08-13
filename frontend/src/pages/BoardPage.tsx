@@ -5,6 +5,7 @@ import { getThreads } from "../api/threads";
 import { ThreadCard } from "../components/ThreadCard";
 import type { Board } from "../types/board";
 import type { Thread } from "../types/thread";
+import {SideCard} from "../components/SideCard.tsx";
 
 export function BoardPage() {
     const { boardAbbreviation } = useParams<{ boardAbbreviation: string }>();
@@ -57,6 +58,9 @@ export function BoardPage() {
 
     return (
         <main>
+
+            <SideCard/>
+
             <nav>
                 <Link to="/">Boards</Link>
             </nav>
