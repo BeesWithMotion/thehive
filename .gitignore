@@ -6,6 +6,11 @@ target/
 .env.prod
 .env.dev
 backend/uploads/
+mvnw
+mvnw.cmd
+.gitattributes
+maven-wrapper.properties
+
 
 ### STS ###
 .apt_generated
